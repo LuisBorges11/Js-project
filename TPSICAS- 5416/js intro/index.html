@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <title>JavaScript Intro</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        pre{
+            background: #4a4a4a;
+            padding-top: 10px;
+            color: #fff;
+        }
+
+        h4{
+            padding-top: 30px;
+
+        }
+
+    </style>
+
+    <script>
+
+       let my_string1 = "string 1";
+       let my_string2 = 'string 2';
+       let my_string3 = '\'string\' 3';
+       let my_string4 = "'string 4'";
+
+
+       //Don´t do this allthough it works 
+       my_string1 = 22; 
+
+       let my_number = 10;
+       let my_decimal = 5.1;
+
+       let charts_are_strings = 'a';
+
+       let my_bool = true;
+       my_boll = false;
+
+       let my_bool2 = true;
+      // my_boll2 = false; is not valid 
+
+
+      //Dont do this, lists should have predefined types 
+      let my_list = ['hello','world',2,1,0,[
+          2,
+          5,
+          [
+            'hello'
+          ],
+          function printStuff(){
+
+          },
+          {
+            'hello': 'world'
+          }  
+        ]];
+
+
+
+
+    </script>
+    </head>
+<body>
+    <div class="container">
+            <h4>Console Log examples, print outputs</h4>
+            <pre>
+    console.log('Hello World: log!');
+    console.error('Hello World: error!');
+    console.warn('Hello World: warn!');
+    console.info('Hello World: info!');
+    console.debug('Hello World: debug!'); 
+            </pre>
+
+
+
+            <h4>Comments</h4>
+            <pre>
+    //this is a single line Comment
+
+    /*
+    this is a multi-line comment
+    this is a multi-line comment
+    this is a multi-line comment
+    this is a multi-line comment
+    */
+            </pre>
+
+
+            <h4>Declaring variable</h4>
+            <pre>
+   //dont do this
+   hello = 'Auto Hello';
+         
+         
+    /*
+    The Var keyword was used in all JavaScript code from 1995 to 2015
+    */
+    var var_hello = 'Var Hello'
+         
+    if(true){
+    let let_hello = 'Let Hello, this variable is contained in the "bloclk"';
+    const const_hello = 'Const helo, this variable can`t be changed';
+    //This give me a error -> const_hello = 'bla bla'           
+    }
+    console.log(hello)
+            </pre>
+
+
+    </div>
+</body>
+</html>

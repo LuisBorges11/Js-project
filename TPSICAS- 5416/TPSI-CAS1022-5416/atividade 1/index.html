@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <script src="mock-data.js"></script>
+    <script src="exercises.js"></script>
+    <script>
+        
+        function exercise_1(items) {
+            // Create an empty array to store the transformed strings
+            const transformedArray = [];
+          
+            // Loop through the input array and process each string
+            for (const item of items) {
+              // Check if the item is not an empty string
+              if (item) {
+                // Convert the first character to uppercase and the rest to lowercase
+                const transformedItem = item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
+                transformedArray.push(transformedItem);
+              }
+            }
+          
+            // Return the transformed array
+            return transformedArray;
+          }
+          
+          // Test cases
+          const test1Input = ['bike', 'car', 'plane'];
+          const test2Input = ['bIke', 'buS', 'cAr', 'plane'];
+          
+          const test1Output = exercise_1(test1Input);
+          const test2Output = exercise_1(test2Input);
+          
+          console.log(test1Output); // ['Bike', 'Car', 'Plane']
+          console.log(test2Output); // ['Bike', 'Bus', 'Car', 'Plane']
+          
+
+    </script>
+</head>
+
+<body>
+    
+
+</body>
+
+</html>

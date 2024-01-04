@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .container {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>first_name</td>
+                    <td>last_name</td>
+                    <td>email</td>
+                    <td>gender</td>
+                    <td>age</td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <button type="button" id="addPerson" onclick="clickAddNewPerson()"
+                            class="btn btn-light rounded-circle">+</button>
+                    </td>
+                    <td><input class="form-control form-control-sm" id="first_name" type="text"></td>
+                    <td><input class="form-control form-control-sm" id="last_name" type="text"></td>
+                    <td><input class="form-control form-control-sm" id="email" type="text"></td>
+                    <td><input class="form-control form-control-sm" id="gender" type="text"></td>
+                    <td><input class="form-control form-control-sm" id="age" type="number"></td>
+                </tr>
+
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+
+
+    <script>
+
+        function clickAddNewPerson() {
+            const person = {
+                first_name: document.getElementById('first_name').value,
+                last_name: document.getElementById('last_name').value,
+                email: document.getElementById('email').value,
+                gender: document.getElementById('gender').value,
+                age: parseInt(document.getElementById('age').value),
+            }
+            if(
+                person.first_name.length === 0 ||
+                person.last_name.length === 0 ||
+                person.email.length === 0 ||
+                person.gender.length === 0 ||
+                isNaN(person.age)
+            ){
+                alert('Please fill the fields properly!')
+                return
+            }
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                                  
+                }
+            };
+            xhttp.open("POST", "http://localhost:3000/person-insert", true);
+            xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify(person));
+
+            console.log(person)
+        }
+
+        function loadPeople() {
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    var people = JSON.parse(xhttp.responseText);
+
+                    const tbody = document.querySelector('.table tbody');
+                    let tbodyInnerHtml = '';
+
+                    people.forEach(element => {
+                        tbodyInnerHtml += `
+                    <tr>
+                        <td>${element.id}</td>
+                        <td>${element.first_name}</td>
+                        <td>${element.last_name}</td>
+                        <td>${element.email}</td>
+                        <td>${element.gender}</td>
+                        <td>${element.age}</td>
+                    </tr>
+                    `
+                    });
+
+                    tbody.innerHTML = tbodyInnerHtml
+
+                }
+            };
+            xhttp.open("GET", "http://localhost:3000/people-list", true);
+            xhttp.send();
+        }
+
+        loadPeople();
+
+    </script>
+
+    </div>
+</body>
+
+</html>

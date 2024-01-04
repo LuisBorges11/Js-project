@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JavaScript Intro</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            pre {
+                background: #4a4a4a;
+                padding-top: 10px;
+                color: #fff;
+            }
+
+            h4 {
+                padding-top: 30px;
+            }
+        </style>
+
+        <script>
+
+            let num_str = '12345';
+            let num_str2 = '1234.5';
+
+            console.log(parseInt(num_str))
+            console.log(parseFloat(num_str2))
+
+            let bat = parseFloat('batatas');
+            let num1 = parseFloat('12345');
+
+            console.log(bat)
+
+            if(!isNaN(num1)){
+                console.log(num1)
+            }
+            console.log(num1, num1.toString())
+            console.log(parseFloat(num_str2), parseFloat(num_str2).toString())
+
+
+            let my_new_var;
+            console.log('my_new_var', my_new_var)
+            
+            let my_new_null_var = null;
+            console.log('my_new_null_var', my_new_null_var);
+
+            if(!isNaN(my_new_null_var) && my_new_null_var !== null){
+                console.log(my_new_null_var+2)
+            }
+
+
+            const nowDate = new Date();
+            console.log('newDate', nowDate.getDay(), nowDate.getMonth(), nowDate.getFullYear());
+
+            const today = new Date();
+            const birthday = new Date("December 17, 1995 03:24:00"); // DISCOURAGED: may not work in all runtimes
+            const birthday2 = new Date("1995-12-17T03:24:00"); // This is standardized and will work reliably
+            const birthday3 = new Date(1995, 11, 17); // the month is 0-indexed
+            const birthday4 = new Date(1995, 11, 17, 3, 24, 0);
+            const birthday5 = new Date(628021800000); // passing epoch timestamp
+            console.log(today,
+                        birthday,
+                        birthday2,
+                        birthday3,
+                        birthday4,
+                        birthday5)
+            
+        </script>
+
+    </head>
+    <body>
+        <div class="container">
+            <h4>Console log examples, print outputs</h4>
+            <pre>
+        console.log('Hello World: Log!');
+        console.error('Hello World: error!');
+        console.warn('Hello World: warn!');
+        console.info('Hello World: info!');
+        console.debug('Hello World: debug!');
+            </pre>
+
+
+            <h4>Comments</h4>
+            <pre>
+        //this is a single line comment
+
+        /*
+        this is a multi-line comment
+
+        this is a multi-line comment
+        this is a multi-line comment
+
+        this is a multi-line comment
+        */
+            </pre>
+            <h4>Declaring variables</h4>
+            <pre>
+        //dont do this
+        hello = 'Auto Hello';
+
+        /*
+            The var keyword was used in all JavaScript code from 1995 to 2015
+        */
+        var var_hello = 'Var Hello';                
+        let let_hello = 'Let Hello, this variable is contained in the "block"';
+        const const_hello = "Const Hello, this variable cant be changed";
+
+            </pre>
+            <h4>Variable types</h4>
+            <pre>
+        let my_string1 = "string 1";
+        let my_string2 = 'string 1';
+        let my_string3 = '\'string\' 1';
+        let my_string4 = "'string' 1";
+
+        let my_other_str = `This is another str: 'aaa' "bbb" ${my_string1}`;
+        console.log(my_other_str)
+        //dont do this, although it works
+        my_string1 = 22;
+
+        let my_number = 10;
+        let my_decimal = 5.1;
+
+        let charts_are_strings = 'a';
+
+        let my_bool = true;
+        my_bool = false;
+
+        const my_bool2 = true;
+        //my_bool2 = false; -> is not valid
+
+        //dont do this, lists should have predefined types
+        let my_list = ['hello','world', 2, 1.0, [ 
+            2,
+            5,
+            [
+                'hello'
+            ],
+            function printStuf (){
+
+            },
+            {
+                'hello': 'world'
+            }
+        ]];
+
+        let dict = {
+            'key_1': 'value of key_1',
+            'key $$ %%1': 'value of weird key',
+            2: 'value of 2'
+        };
+
+        // console.log(my_list, dict)
+        // console.log(my_list[1], my_list[4], my_list[my_list.length -1])
+
+        console.log(dict.key_1);
+        console.log(dict["2"]);
+        console.log(dict["key $$ %%1"]);
+
+        let myFunction1 = function(){
+            console.log('invoked myFunction1');
+        };
+
+        function myFunction2(){
+            console.log('invoked myFunction2');
+        };
+        
+        myFunction1();
+        myFunction2();
+
+            </pre>
+
+<h4>if, else if, else & ternary</h4>
+<pre>
+    if(true){
+        console.log('true!')
+    }
+    
+    let age = 27;
+    let ageIsGreaterThan26 = age > 26;
+    if(ageIsGreaterThan26){
+        console.log('27 > 26!')
+    }
+
+    if(false){
+        //wont be invoked
+    }
+    //only evaluated if if is false
+    else if(ageIsGreaterThan26){
+        console.log('inside else if')
+    }
+
+    if(false){
+        //wont be invoked
+    }
+    else{
+        console.log('inside else')
+    }
+
+    let john_age = 48;
+    let msg = '';
+
+    if(john_age >= 48){
+        msg = 'John is kinda old'
+    }
+    else{
+        msg = 'John is not that old'
+    }
+
+    john_age = john_age >= 48 ? 'John is kinda old' : 'John is not that old';
+
+    john_age = john_age >= 48 ? (john_age <= 50 ? 'age is between 48-50' : 'age is greater than 50') : 'John is not that old';
+
+</pre>
+
+<h4>switches</h4>
+<pre>
+
+    let fruit = 'Bananas';
+
+    switch(fruit){
+        case 'Apples':
+        case 'Oranges':
+            // console.log('Apples');
+            // break;
+            // console.log('Oranges');
+            console.log('Oranges & Apples');
+            break;
+        case 'Bananas':
+            console.log('Bananas')
+            break;
+        default:
+            console.log('default');
+            break;
+    }
+
+</pre>
+
+<h4>for loop</h4>
+<pre>
+
+
+    // for(let i = 0; i < 5; i++){
+        //     console.log('for i', i)                
+        // }
+        let l_pos = null;
+
+        let list = ['a','b','k','l','o']
+        for(let i = 0; i < list.length; i++){
+            if(i === 1){
+                continue
+                console.log('wont be invoked')
+            }
+            console.log('for', list[i]);
+
+            if(list[i] === 'l'){
+                l_pos = i;
+                break
+            }
+        }
+
+        console.log('l_pos',l_pos);
+
+
+</pre>
+
+<h4>while loop</h4>
+<pre>
+
+
+    let i = 0;
+    while(i < 5){
+
+        console.log(i)
+        i++
+        break
+    }
+    console.log('after while', i)
+
+
+</pre>
+
+    <h4>do while loop</h4>
+    <pre>
+
+
+        let i = 99;
+        do{
+            
+            console.log(i)
+            i++
+        }
+        while(i < 5)
+        console.log('do while', i)
+
+    </pre>
+
+    <h4>for in loop</h4>
+    <pre>
+
+        let obj = {
+            'f_name': 'Oscar',
+            'l_name': 'Smith',
+            'age': 47
+        };
+
+        for(let chave in obj){
+            console.log(chave, obj[chave])
+        }
+
+    </pre>
+
+    <h4>function</h4>
+    <pre>
+
+        // if(true){
+
+            //     const isEvenNumber = function(number){
+            //         return number % 2 === 0
+            //     }
+            //     function myFun2(){
+    
+            //     }
+            // }
+                
+            // const calculator = function(2, 3, '*')
+            // const calculator = function(2, 3, '-')
+            // const calculator = function(2, 3, '+')
+            // const calculator = function(2, 3, '/')
+            const calculator = function(num1, num2, operation){
+
+                switch(operation){
+                    case '*':
+                        console.log(num1 * num2)    
+                    break;
+                    case '-':
+                        console.log(num1 - num2)    
+                    break;
+                    case '+':
+                        console.log(num1 + num2)    
+                    break;
+                    case '/':
+                        console.log(num1 / num2)    
+                    break;
+                }
+            };
+
+            // calculator(2, 3, '*')
+            // calculator(2, 3, '-')
+            // calculator(2, 3, '+')
+            // calculator(2, 3, '/')
+
+
+            const div = function(s_num1,s_num2){
+                return s_num1 / s_num2
+            }
+            
+            const mult = function(s_num1,s_num2){
+                return s_num1 * s_num2
+            }
+            
+            const new_calculator = function(num1, num2, operation){
+
+                const sum = function(s_num1,s_num2){
+                    return s_num1 + s_num2
+                }
+
+                const sub = function(s_num1,s_num2){
+                    return s_num1 - s_num2
+                }
+
+                switch(operation){
+                    case '*':
+                        return mult(num1, num2   )
+                    break;
+                    case '-':
+                        return sub(num1, num2)    
+                    break;
+                    case '+':
+                        return sum(num1, num2)    
+                    break;
+                    case '/':
+                        return div(num1, num2   )
+                    break;
+                }
+                return
+            }
+
+
+            console.log(new_calculator(2, 3, '*'))
+            console.log(new_calculator(2, 3, '-'))
+            console.log(new_calculator(2, 3, '+'))
+            console.log(new_calculator(2, 3, '/'))
+
+
+
+            const loopsStuff = function(){
+                const myLoop = function(x){
+                    console.log(x);
+                    if(x >= 10){
+                        return
+                    }
+                    myLoop(x+1)
+                }
+                myLoop(0)
+            }
+            loopsStuff()
+    </pre>
+<h4>common string functions</h4>
+
+<pre>
+    let msg1 = 'my great message !';
+    console.log(msg1.split(' '))
+    
+    let data1 = '22,44,77,45,90';
+    console.log(data1.split(','))
+    console.log(data1.length)
+    
+    console.log(data1.split(',')[1])
+
+    if(data1.includes('22,4')){
+        console.log('22 is in list')
+    }
+
+    if(data1.includes('202')){
+        console.log('202 is not in list')
+    }
+
+    if(data1.startsWith('22,44,77,45,90')){
+        console.log('data1 startsWith')
+    }
+    if(data1.startsWith('22,44')){
+        console.log('data1 startsWith')
+    }
+    if(data1.startsWith('2a2,44')){
+        console.log('data1 startsWith')
+    }
+    if(data1.endsWith('77,45,90')){
+        console.log('data1 endsWith')
+    }
+    if(data1.endsWith('77,45,9')){
+        console.log('data1 endsWith')
+    }
+
+    let msg2 = 'hello';
+    let msg3 = 'Hello';
+
+    console.log(msg2,msg3)
+    console.log(msg2.toLowerCase(),msg3.toLowerCase())
+    console.log(msg2.toUpperCase(),msg3.toUpperCase())
+
+    console.log("dogs, dogs are nice!".replace('dogs', 'turtles'))
+    console.log("dogs, dogs are nice!".replaceAll('dogs', 'turtles'))
+
+    console.log("dogs, dogs are nice!".slice(4))
+    console.log("dogs, dogs are nice!".slice(0, 4))
+</pre>
+<h4>common array functions</h4>
+
+<pre>
+       
+    let shopping = ["bread", "milk", "cheese", "noodles"];
+    let milkId = 1; 
+    // console.log(shopping[milkId]);
+
+    // console.log(shopping.length);
+    // console.log(shopping[50]);
+    // shopping[50] = 33;
+    // console.log(shopping[50]);
+    // console.log(shopping);
+
+    // for(let i = 0; i< shopping.length;i++){
+    //     // console.log(shopping[i])
+
+    // }
+    // shopping.push('butter')
+
+    // for(let elm of shopping){
+    //     console.log(elm)
+    // }
+    
+    // console.log(shopping.pop(), shopping)
+    // console.log(shopping.shift(), shopping)
+    
+    // shopping = ["bread", "milk", "cheese", "noodles"];
+    
+    // shopping.splice(1,2)
+    // console.log(shopping)
+    
+    shopping = ["bread", "milk", "cheese", "noodles"];
+
+    const myCustomCb = function(elm, i, li) {
+        console.log(elm, i, li)
+    }
+
+    shopping.forEach(myCustomCb)
+
+    let shopping2 = shopping.filter(e => e);
+    // console.log(shopping2);
+    
+    // console.log(shopping2.filter(e => e !== 'cheese'));
+    // console.log(
+    //     shopping2.filter((e) => {
+    //         let str = e.toUpperCase();
+
+    //         if(str.startsWith('C')){
+    //             console.log('isto começa com C')
+    //         }                    
+    //         return e !== 'cheese'
+    //     })
+    // );
+
+    console.log(
+        shopping2
+    )
+    console.log(
+        shopping2.map((e) => e + 'batatas')
+    )
+    console.log(
+        shopping2.map((e) => {
+            return {
+                'foodType': e
+            }
+        })
+    )
+
+    console.log(
+        shopping2.join('-')
+    )
+
+    console.log(
+        shopping2.toString()
+    )
+
+</pre>
+<h4>common object functions</h4>
+
+<pre>
+       
+   
+        
+    const myObject = {
+        'First Name': 'John',
+        last_name: 'Smith',
+        age: 27,
+        'a # #234 .': 'some value'
+    };
+    console.log(myObject.last_name)
+    console.log(myObject['First Name'])
+    
+    let weird_key = 'a # #234 .';
+
+    console.log(myObject[weird_key])
+    // myObject = 0;
+    myObject[weird_key] = 'my new value'
+    
+    console.log(myObject[weird_key]);
+
+    console.log(Object.keys(myObject))
+    console.log(Object.values(myObject))
+    
+    Object.keys(myObject).forEach((key) => {                
+        console.log(myObject[key])
+    })
+
+    delete myObject[weird_key]
+    console.log(myObject);
+
+
+    
+
+</pre>
+<h4>modules</h4>
+
+<pre>
+       
+   
+    const myShoppingApp = {
+        Products: [
+            {Name: 'Motherboard', Model: "23x"},
+            {Name: 'Fridge', Model: "coolerX2"}
+        ],
+
+
+        listProducts: function(){
+            return this.Products
+        }
+    };
+
+    // let products = myShoppingApp.listProducts();
+    // console.log(products, myShoppingApp.Products)
+
+
+    var testModule = (function () {
+        var counter = 0;
+        return {
+
+            incrementCounter: function () {
+                return ++counter;
+            },
+            printCounter: function () {
+                console.log(counter);
+            },
+            resetCounter: function () {
+                console.log( "counter value prior to reset: " + counter );
+                counter = 0;
+            }
+        };
+
+    })();
+    // testModule.printCounter()
+    // testModule.incrementCounter()
+    // testModule.incrementCounter()
+    // testModule.printCounter()
+
+    const myShoppingAppModule = (function () {
+
+        const _products = [
+            {id: 1, Name: 'Motherboard', Model: "23x"},
+            {id: 2, Name: 'Fridge', Model: "coolerX2"}
+        ];
+
+        return {
+
+            listProducts: function(){
+                return _products
+            },
+            insertProduct: function(product){
+                if(product !== undefined){
+                    _products.push(product)
+                }
+            },
+            updateProduct: function(product){
+                // let listProduct = _products.find(p => p.id === product.id);
+                
+                //same as above
+                // listProduct = _products.find((p) => {
+                //     return p.id === product.id
+                // });
+                
+                let productIdx = _products.findIndex(p => p.id === product.id);
+                _products[productIdx] = product;
+            },
+            deleteProduct: function(id){
+                // _products = _products.filter(p => p.id !== id)
+                let productIdx = _products.findIndex(p => p.id === id);
+                _products.splice(productIdx, 1)
+            }
+        }
+    })();
+    // console.log(myShoppingAppModule.listProducts().length)
+
+    myShoppingAppModule.insertProduct(
+        {id: 3, Name: 'Washing Machine', Model: "wash9000"}
+        )
+    myShoppingAppModule.insertProduct(
+        {id: 4, Name: 'Washing Machine 2', Model: "wash9000"}
+        )
+
+    myShoppingAppModule.updateProduct(
+        {id: 3, Name: 'LED TV', Model: "tv090934"}
+        )
+
+    console.log(myShoppingAppModule.deleteProduct(2))
+    console.log(myShoppingAppModule.listProducts())
+    
+
+    
+
+</pre>
+
+<h4>access object properties</h4>
+
+<pre>
+       
+    const tree = {
+        name: "Root",
+        value: 10,
+        children: [
+            {
+                name: "Node 1",
+                value: 5,
+                children: [
+                    {
+                        name: "Leaf 1-1",
+                        value: 3,
+                    },
+                    {
+                        name: "Leaf 1-2",
+                        value: 2,
+                    },
+                ],
+            },
+            {
+                name: "Node 2",
+                value: 7,
+                children: [
+                    {
+                        name: "Leaf 2-1",
+                        value: 2,
+                    },
+                    {
+                        name: "Leaf 2-2",
+                        value: 5,
+                    },
+                ],
+            },
+        ],
+    };
+    console.log(tree.name)
+    console.log(tree.children[0].name)
+    console.log(tree.children[1].name)
+    console.log(tree.children[1].children[0].name)
+    console.log(tree.children[0].children[1].name)
+    console.log(tree.children[0].children[1].value)
+    console.log(tree.children[1].children[1].value)
+    
+
+</pre>
+
+
+    </div>
+
+    </body>
+</html>
